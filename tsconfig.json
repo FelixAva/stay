@@ -11,5 +11,5 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-, "app/_layout.jsx"  ]
+, "app/tabs/form/_layout.jsx", "api/api-manager.ts", "app/tabs/dashboard/dashboard.jsx"  ]
 }
