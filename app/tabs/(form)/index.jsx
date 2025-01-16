@@ -3,7 +3,7 @@ import { View, Text, Button, ScrollView } from "react-native";
 import { ActivityIndicator, RadioButton } from "react-native-paper";
 import { getForm } from "@/api/api-client";
 
-export default function App() {
+export default function Form() {
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [disabled, setIsDisabled] = useState(false);

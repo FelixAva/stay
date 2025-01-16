@@ -1,56 +1,51 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, ScrollView, Pressable } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Pressable, ScrollView } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { UserRegister } from "@/types/user";
-import { InputField } from "@/components";
-import { register } from "@/api/api-client";
+import { InputField, Link } from "@/components";
+import { login } from "@/api/api-client";
+import { UserLogin } from "@/types/user";
 
-export default function Register() {
+export default function Login() {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      lastName: '',
       email: '',
-      age: '',
-      lastGrade: '',
-      password: '',
+      password: ''
     }
   });
 
-  const onSubmit = (data: UserRegister) => {
-    register(data);
-    Alert.alert("Éxito", "Registro exitoso.");
+  const onSubmit = (data: UserLogin) => {
+    login(data);
   };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Registro</Text>
-        <Text style={styles.subtitle}>Completa los datos para registrarte</Text>
+        <Text style={styles.title}>Inicio de Sesión</Text>
+        <Text style={styles.subtitle}>Completa los datos para ingresar</Text>
       </View>
 
+      {/* Campo de correo */}
       <View style={styles.form}>
-        {/* Email */}
         <View style={styles.inputContainer}>
           <Controller
-            control={control}
             name="email"
+            control={control}
             rules={{
-              required: "El correo electrónico es obligatorio",
+              required: "El correo es obligatorio",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Ingresa un correo válido",
+                message: "Introduce un correo válido",
               },
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <InputField
                 label='Correo electronico'
                 inputProps={{
-                  placeholder: "Ingresa tu correo",
+                  placeholder: "Escribe tu correo",
                   onBlur: onBlur,
                   onChangeText: onChange,
                   value: value
@@ -61,11 +56,11 @@ export default function Register() {
           />
         </View>
 
-        {/* Password */}
+        {/* Campo de contraseña */}
         <View style={styles.inputContainer}>
           <Controller
-            control={control}
             name="password"
+            control={control}
             rules={{
               required: "La contraseña es obligatoria",
               minLength: {
@@ -73,11 +68,11 @@ export default function Register() {
                 message: "La contraseña debe tener al menos 6 caracteres",
               },
             }}
-            render={({ field: { onChange, value, onBlur } }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <InputField
                 label='Contraseña'
                 inputProps={{
-                  placeholder: "Ingresa tu contraseña",
+                  placeholder: "Escribe tu contraseña",
                   onBlur: onBlur,
                   onChangeText: onChange,
                   value: value
@@ -88,104 +83,18 @@ export default function Register() {
           />
         </View>
 
-        {/* Age */}
-        <View style={styles.inputContainer}>
-          <Controller
-            control={control}
-            name="age"
-            rules={{
-              required: "La edad es obligatoria",
-              pattern: {
-                value: /^[0-9]+$/,
-                message: "La edad debe ser un número",
-              },
-            }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <InputField
-                label='Edad'
-                inputProps={{
-                  placeholder: "Ingresa tu edad",
-                  onBlur: onBlur,
-                  onChangeText: onChange,
-                  value: value
-                }}
-                error={errors.age?.message}
-              />
-            )}
-          />
-        </View>
-
-        {/* Last Grade */}
-        <View style={styles.inputContainer}>
-          <Controller
-            control={control}
-            name="lastGrade"
-            rules={{ required: "El grado escolar es obligatorio" }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <InputField
-                label='Ulimo grado escolar'
-                inputProps={{
-                  placeholder: "Ingresa tu ultimo año de estudio",
-                  onBlur: onBlur,
-                  onChangeText: onChange,
-                  value: value
-                }}
-                error={errors.lastGrade?.message}
-              />
-            )}
-          />
-        </View>
-
-        {/* First Name */}
-        <View style={styles.inputContainer}>
-          <Controller
-            control={control}
-            name="name"
-            rules={{ required: "El nombre es obligatorio" }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <InputField
-                label='Nombre'
-                inputProps={{
-                  placeholder: "Escribe tu nombre",
-                  onBlur: onBlur,
-                  onChangeText: onChange,
-                  value: value
-                }}
-                error={errors.name?.message}
-              />
-            )}
-          />
-        </View>
-
-        {/* Last Name */}
-        <View style={styles.inputContainer}>
-          <Controller
-            control={control}
-            name="lastName"
-            rules={{ required: "El apellido es obligatorio" }}
-            render={({ field: { onChange, value, onBlur } }) => (
-              <InputField
-                label='Apellido paterno'
-                inputProps={{
-                  placeholder: "Escribe tu apellido paterno",
-                  onBlur: onBlur,
-                  onChangeText: onChange,
-                  value: value
-                }}
-                error={errors.lastName?.message}
-              />
-            )}
-          />
-        </View>
-
+        {/* Botón de inicio de sesión */}
         {/* Submit Button */}
         <Pressable style={styles.button} onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.buttonText}>Registrar</Text>
+          <Text style={styles.buttonText}>Iniciar Sesion</Text>
         </Pressable>
+
+        <Link label="¿No tienes una cuenta?" route={"register"} />
+
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
