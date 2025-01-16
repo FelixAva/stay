@@ -1,4 +1,4 @@
-import { UserRegister } from "@/types/user";
+import { UserLogin, UserRegister } from "@/types/user";
 import apiManager from "./api-manager";
 
 const register = async ({email, password, age, lastGrade, name, lastName} : UserRegister) => {
@@ -15,6 +15,16 @@ const register = async ({email, password, age, lastGrade, name, lastName} : User
   console.log(data);
 };
 
+const login = async ( { email, password } : UserLogin) => {
+  const body = {
+    email,
+    password
+  };
+
+  const { data } = await apiManager.post('login', { body });
+  console.log(data);
+}
+
 const getForm = async () => {
   // Datos que se enviarán al endpoint
   const body = {
@@ -28,5 +38,6 @@ const getForm = async () => {
 
 export {
   getForm,
-  register
+  register,
+  login
 }
