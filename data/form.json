@@ -1,0 +1,20 @@
+{
+  "formId": 1,
+  "title": "Nombre de formulario",
+  "questions": [
+    {
+      "id": 1,
+      "category": "Quimica",
+      "text": "¿Cual es el numero atomico del oxigeno?",
+      "options": [10, 2, 16, 8],
+      "correct": 3
+    },
+    {
+      "id": 2,
+      "category": "Matematicas",
+      "text": "¿Cual es la operacion inversa de la raiz cuadrada?",
+      "options": ["Suma", "Division", "Multiplicación", "Potencia"],
+      "correct": 3
+    }
+  ]
+}
