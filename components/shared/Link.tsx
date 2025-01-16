@@ -31,7 +31,7 @@ export default function Link( { label, route }: Props ) {
   return (
     <Pressable onPress={ () => router.replace(`/${ route }`) }>
       <StyText>
-        { label } <RouteName>{ route === 'register' ? 'Register' : 'Log In' }</RouteName>
+        { label } <RouteName>{ route === 'register' ? 'Registrate' : 'Inicia Sesión' }</RouteName>
       </StyText>
 
     </Pressable>
