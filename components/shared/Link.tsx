@@ -16,12 +16,12 @@ interface Props {
 }
 
 const StyText = styled(Text)`
-  font-size: 22px;
+  font-size: 18px;
   color: #000;
 `
 
 const RouteName = styled(Text)`
-  font-size: 22px;
+  font-size: 20px;
   color: blue;
   font-style: italic;
   text-transform: uppercase;
